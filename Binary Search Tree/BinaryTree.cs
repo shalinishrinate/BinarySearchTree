@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Binary_Search_Tree
 {
-    class BinaryTree
+    public class BinaryTree
     {
         //variables
-    
+
         Node root;
         Node currentNode;
 
         //constructor
-        public BinaryTree(int data)
-        {
-            root = null;  
-        }
+        //public BinaryTree()
+        //{
+           
+        //}
 
         //method
 
         public void Add(int data)
         {
-            Node node = new Node();
+            Node node = new Node(data);
             if (root == null)
             {
                 root = node;
@@ -32,31 +32,37 @@ namespace Binary_Search_Tree
             else
             {
                 currentNode = root;
+                while (true)
+                {
 
-                if (data < currentNode.data)
-                {
-                    if (currentNode.left == null)
+                    if (data < currentNode.data)
                     {
-                        currentNode.left = node;
+                        if (currentNode.left == null)
+                        {
+                            currentNode.left = node;
+                            break;
+                        }
+                        else if (currentNode.left != null)
+                        {
+                            currentNode = currentNode.left;
+                        }
                     }
-                    else if (currentNode.left != null)
+                    else if (data > currentNode.data)
                     {
-                        currentNode = currentNode.left;
-                    }
-                }
-                else if (data > currentNode.data)
-                {
-                    if (currentNode.right == null)
-                    {
-                        currentNode.right = node;
-                    }
-                    else if (currentNode.right != null)
-                    {
-                        currentNode = currentNode.right;
+                        if (currentNode.right == null)
+                        {
+                            currentNode.right = node;
+                            break;
+                        }
+                        else if (currentNode.right != null)
+                        {
+                            currentNode = currentNode.right;
+                        }
                     }
                 }
             }
-        }
 
+        }
     }
 }
+
