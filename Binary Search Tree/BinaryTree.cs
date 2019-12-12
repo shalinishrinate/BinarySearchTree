@@ -16,7 +16,7 @@ namespace Binary_Search_Tree
         //constructor
         //public BinaryTree()
         //{
-           
+
         //}
 
         //method
@@ -24,44 +24,91 @@ namespace Binary_Search_Tree
         public void Add(int data)
         {
             Node node = new Node(data);
+
             if (root == null)
             {
-                root = node;
+                root = node; // root of the tree is declared
                 return;
             }
             else
             {
-                currentNode = root;
+                currentNode = root; // if root is not null then it becomes the currentnode
+
                 while (true)
                 {
-
-                    if (data < currentNode.data)
+                    if (data < currentNode.data) // if the value of currentnode is more than the int data
                     {
-                        if (currentNode.left == null)
+                        if (currentNode.left == null) // and if the node to the left is null
                         {
-                            currentNode.left = node;
+                            currentNode.left = node;    // then that becomed the left node
                             break;
                         }
-                        else if (currentNode.left != null)
+                        else if (currentNode.left != null) // but if the left node is not null
                         {
-                            currentNode = currentNode.left;
+                            currentNode = currentNode.left; // currentnode left becomes the current node
                         }
                     }
-                    else if (data > currentNode.data)
+                    else if (data > currentNode.data) // if the currentnode is less then the int data
                     {
-                        if (currentNode.right == null)
+                        if (currentNode.right == null) // and node to the right is null
                         {
-                            currentNode.right = node;
+                            currentNode.right = node; // then that becomes the right node
                             break;
                         }
-                        else if (currentNode.right != null)
+                        else if (currentNode.right != null) // but if the right node is not null
                         {
-                            currentNode = currentNode.right;
+                            currentNode = currentNode.right;// then right becomes the current node
                         }
                     }
                 }
             }
+        }
+        public bool Search(int inputData)
+        {
+            if (inputData == root.data) // if the data entered is equal to the root value
+            {
+                Console.WriteLine("Found the number!"); // then its a match
+                return true;
+            }
 
+            currentNode = root; //now the current node 
+            while (true) // condition
+            {
+                if (inputData < currentNode.data)
+                {
+                    if (currentNode.left == null)
+                    {
+                        return false;
+                    }
+                    else if (currentNode.left.data == inputData)
+                    {
+                        Console.WriteLine("Found the number!");
+                        return true;
+                    }
+                    else
+                    {
+                        currentNode = currentNode.left;//new currentnode
+                    }
+
+                }
+                if (inputData > currentNode.data)
+                {
+                    if (currentNode.right == null)
+                    {
+                        return false;
+                    }
+                    else if (currentNode.right.data == inputData)
+                    {
+                        Console.WriteLine("Found the number!");
+                        return true;
+                    }
+                    else
+                    {
+                        currentNode = currentNode.right;
+                    }
+
+                }
+            }
         }
     }
 }
